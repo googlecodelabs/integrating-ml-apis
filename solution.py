@@ -136,9 +136,13 @@ def compare_audio_to_image(language, audio, image):
     labels = detect_labels_uri(image)
 
     # naive check for whether entities intersect with labels
+    has_match = False
     for entity in entities:
         if entity in labels:
             print('The audio and image both contain: {}'.format(entity))
+            has_match = True
+    if not has_match:
+        print('The audio and image do not appear to be related.')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
